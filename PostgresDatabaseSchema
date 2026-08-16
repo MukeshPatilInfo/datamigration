@@ -1,0 +1,70 @@
+-- Enable UUID generation extension (run once per database)
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
+-- Table: dm_enovia_qa
+CREATE TABLE dm_enovia_qa (
+    uuid UUID DEFAULT gen_random_uuid(),
+
+    type VARCHAR(255),
+    part_type VARCHAR(255),
+    object_id VARCHAR(255),
+    part_number VARCHAR(255),
+    revision VARCHAR(100),
+    description TEXT,
+    state VARCHAR(100),
+    eol VARCHAR(100),
+    project VARCHAR(255),
+    modified TIMESTAMP,
+    cad_primary VARCHAR(255),
+    cad_secondary VARCHAR(255),
+    latest_release_rev VARCHAR(100),
+    latest_rev VARCHAR(100),
+    last_revision VARCHAR(100),
+    last_enovia_dash VARCHAR(255),
+    last_enovia_dash_rev VARCHAR(100),
+    last_enovia_dash_state VARCHAR(100),
+    last_enovia_dash_modified TIMESTAMP
+);
+
+
+-- Table: dm_epdm_qa
+CREATE TABLE dm_epdm_qa (
+    uuid UUID DEFAULT gen_random_uuid(),
+    enovia_part_number VARCHAR(255),
+    description TEXT,
+    file_name TEXT,
+    creator VARCHAR(255),
+    creation_date TIMESTAMP,
+    cad_primary VARCHAR(255),
+    enovia_revision VARCHAR(100)
+);
+
+
+
+
+-- Table: dm_pdm_link_qa
+CREATE TABLE dm_pdm_link_qa (
+    uuid UUID DEFAULT gen_random_uuid(),
+    enovia_part_number VARCHAR(255),
+    file_title_description TEXT,
+    file_name TEXT,
+    created_by VARCHAR(255),
+    designer VARCHAR(255),
+    creation_date TIMESTAMP,
+    cad_primary VARCHAR(255),
+    enovia_revision VARCHAR(100),
+    version VARCHAR(100)
+);
+
+
+
+
+CREATE UNIQUE INDEX idx_dm_enovia_qa_uuid ON dm_enovia_qa (uuid);
+CREATE UNIQUE INDEX idx_dm_epdm_qa_uuid ON dm_epdm_qa (uuid);
+CREATE UNIQUE INDEX idx_dm_pdm_link_qa_uuid ON dm_pdm_link_qa (uuid);
+
+
+
+
+
+psql: error: utility failed with exit code: 1
