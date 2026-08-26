@@ -1,0 +1,5 @@
+Eclipse-ready Java delivery created:  D:\DataMigration\DataMigration-Eclipse-Java-1.0.0.zip 
+
+It includes complete Java sources,  pom.xml , compiled JAR, PostgreSQL JDBC driver  postgresql-42.7.5.jar , tracking-table SQL, password-safe configuration template, and Eclipse import/run instructions in  README.md .
+
+Use Eclipse’s Import > Maven > Existing Maven Projects, then copy  config\application.properties.example  to  application.properties  and enter the client database credentials.
