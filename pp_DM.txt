@@ -1,0 +1,12 @@
+The give code is not working the because the API/Classes, you have given those are not available in windchill.
+
+Ex. EPMGenericInstanceLink class
+
+Process should follow for Instance Attribute Update:
+Each CAD Model should check if it is Instance or Not
+If Yes, Then Navigate to Generic model of the Instance then Checked-out Generic one then Checked-out the Instance then Update the attributes then Checked-in the Instance then Checked-in the Generic. 
+
+Please refer the attached PTC Article file (PTC Article.txt) for code reference. You can take APIs given in same file.
+
+Also, You can see the all the related help from PTC site https://www.ptc.com/en/support.
+Before you give any solution, please make sure those classes are available in windchill.
