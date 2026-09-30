@@ -1,0 +1,37 @@
+How to fetch generic part with a given family table instance in Windchill PDMLink
+Modified: 09-Feb-2024   
+Available in: English 
+
+
+Applies To
+Windchill PDMLink 10.2 to 11.2
+Description
+Need an API to fetch generic part for an instance in the family table
+Resolution
+The API to use is : 
+ 
+QueryResult navigateGenericToIteration(EPMDocument variant, QuerySpec querySpec, boolean onlyOtherSide, ConfigSpec configSpec)
+                                       throws WTException, ConfigException
+Navigates the GENERIC role of the EPMVariantLink and finds the appropriate iteration of the generic for this variant by applying the configSpec.
+If onlyOtherSide is true, it returns a QueryResult that holds the EPMDocument that is the generic for this variant. An EPMDocumentMaster is returned when none of the iterations of the generic match the configSpec criteria.
+
+If onlyOtherSide is false, it returns a QueryResult of Persistable[] in which the first Persistable in the array is the EPMVariantLink and the second is the matching EPMDocument or EPMDocumentMaster when none of its iterations match the configSpec criteria. 
+
+Supported API: true
+
+Parameters:
+variant -
+querySpec - null or a QuerySpec that specifies additional criteria for selecting the links
+onlyOtherSide - If onlyOtherSide is "true", returns a QueryResult of EPMDocuments and EPMDocumentMasters. An EPMDocumentMaster is returned when none of its iteration match the ConfigSpec. If "false", returns a QueryResult of Persistable[] in which the 0th Persistable in the array is the EPMVariantLink and the 1th position is the matching EPMDocument or EPMDocumentMaster.
+configSpec -
+Returns:
+QueryResult
+Throws:
+WTException
+wt.vc.config.ConfigException
+ConfigException
+ 
+Fetch generic part for an instance API:
+EPMDocument instanceEpm = null; // Instance EPMDocument object.
+QueryResult ft_qr2 =EPMStructureHelper.service.navigateGenericToIteration( instanceEpm, null, true, null);
+EPMDocument epm = (EPMDocument) ft_qr2.nextElement();//Generic Part
